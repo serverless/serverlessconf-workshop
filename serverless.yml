@@ -23,3 +23,8 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+    WorkshopStream:
+      Type: AWS::Kinesis::Stream
+      Properties:
+        Name: Visits
+        ShardCount: 1
