@@ -7,3 +7,19 @@ provider:
 functions:
   hello:
     handler: handler.hello
+
+resources:
+  Resources:
+    WorkshopTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: UploadedImages
+        AttributeDefinitions:
+          - AttributeName: uuid
+            AttributeType: S
+        KeySchema:
+          - AttributeName: uuid
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
