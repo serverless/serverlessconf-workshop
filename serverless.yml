@@ -3,6 +3,12 @@ service: workshop
 provider:
   name: aws
   runtime: nodejs4.3
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+        - kinesis:*
+      Resource: "*"
 
 functions:
   hello:
