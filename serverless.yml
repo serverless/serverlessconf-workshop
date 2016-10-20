@@ -8,18 +8,23 @@ provider:
       Action:
         - dynamodb:*
         - kinesis:*
+        - s3:*
       Resource: "*"
 
 functions:
-  hello:
-    handler: handler.hello
+  upload:
+    handler: upload/index.upload
+    events:
+      - http:
+          method: get
+          path: upload
 
 resources:
   Resources:
     WorkshopTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: UploadedImages
+        TableName: WorkshopUploadedImages
         AttributeDefinitions:
           - AttributeName: uuid
             AttributeType: S
@@ -32,5 +37,9 @@ resources:
     WorkshopStream:
       Type: AWS::Kinesis::Stream
       Properties:
-        Name: Visits
+        Name: WorkshopVisits
         ShardCount: 1
+    WorkshopBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: sconf-workshop-uploads # Provide custom name here
