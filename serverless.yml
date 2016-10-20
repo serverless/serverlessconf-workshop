@@ -43,3 +43,11 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: sconf-workshop-uploads # Provide custom name here
+        CorsConfiguration:
+          CorsRules:
+            - AllowedMethods:
+                - PUT
+              AllowedOrigins:
+                - "*"
+              AllowedHeaders:
+                - "*"
