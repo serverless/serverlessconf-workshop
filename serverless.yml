@@ -6,8 +6,6 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:*
-        - kinesis:*
         - s3:*
       Resource: "*"
 
@@ -18,31 +16,19 @@ functions:
       - http:
           method: get
           path: upload
+  resize:
+    handler: resize/index.resize
+    events:
+      - s3:
+          bucket: sconf-workshop-uploads
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: image
 
 resources:
   Resources:
-    WorkshopTable:
-      Type: AWS::DynamoDB::Table
+    S3BucketSconfworkshopuploads:
       Properties:
-        TableName: WorkshopUploadedImages
-        AttributeDefinitions:
-          - AttributeName: uuid
-            AttributeType: S
-        KeySchema:
-          - AttributeName: uuid
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-    WorkshopStream:
-      Type: AWS::Kinesis::Stream
-      Properties:
-        Name: WorkshopVisits
-        ShardCount: 1
-    WorkshopBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: sconf-workshop-uploads # Provide custom name here
         CorsConfiguration:
           CorsRules:
             - AllowedMethods:
