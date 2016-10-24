@@ -22,6 +22,12 @@ functions:
       - http:
           method: get
           path: list
+  show:
+    handler: show/index.show
+    events:
+      - http:
+          method: get
+          path: show
   resize:
     handler: resize/index.resize
     events:

@@ -16,7 +16,7 @@ module.exports.list = function (event, context, callback) {
     } else {
       let list = ''
       data.Contents.forEach(function (file) {
-        let thumb = `https://s3.amazonaws.com/sconf-workshop-uploads/${file.Key}`
+        let thumb = `https://s3.amazonaws.com/${BUCKET}/${file.Key}`
         list += `<li><a href="/dev/show?image=${file.Key.replace('small-', '')}"><img src="${thumb}" /></a></li>`
       })
 
