@@ -12,6 +12,8 @@ module.exports.show = function (event, context, callback) {
   const html = `
   <html>
     <body>
+      <a href="list">Back to the list of images</a>
+      <a href="upload">Upload more images</a>
       <img src="https://s3.amazonaws.com/${BUCKET}/${event.queryStringParameters.image}" />
     </body>
   </html>`
