@@ -8,6 +8,7 @@ provider:
       Action:
         - s3:*
         - kinesis:*
+        - dynamodb:*
       Resource: "*"
 
 functions:
@@ -37,6 +38,13 @@ functions:
           event: s3:ObjectCreated:*
           rules:
             - prefix: image
+  persistVisit:
+    handler: persistVisit/index.persistVisit
+    events:
+      - stream:
+          arn: arn:aws:kinesis:us-east-1:377024778620:stream/WorkshopVisits
+          batchSize: 1
+
 
 resources:
   Resources:
@@ -45,6 +53,19 @@ resources:
       Properties:
         Name: WorkshopVisits
         ShardCount: 1
+    WorkshopTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: WorkshopVisits
+        AttributeDefinitions:
+          - AttributeName: uuid
+            AttributeType: S
+        KeySchema:
+          - AttributeName: uuid
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
     S3BucketSconfworkshopuploads:
       Properties:
         CorsConfiguration:
