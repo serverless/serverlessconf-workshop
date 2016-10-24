@@ -16,6 +16,12 @@ functions:
       - http:
           method: get
           path: upload
+  list:
+    handler: list/index.list
+    events:
+      - http:
+          method: get
+          path: list
   resize:
     handler: resize/index.resize
     events:

@@ -1,9 +1,11 @@
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3()
 
+const BUCKET = 'sconf-workshop-uploads'
+
 module.exports.upload = function (event, context, callback) {
   const params = {
-    Bucket: 'sconf-workshop-uploads',
+    Bucket: BUCKET,
     Key: `image${Date.now()}.jpeg`,
     ContentType: 'image/jpeg',
     ACL: 'public-read',
