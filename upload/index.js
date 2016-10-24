@@ -34,6 +34,7 @@ module.exports.upload = function (event, context, callback) {
     </head>
     <body>
       <h1>Upload you images</h1>
+      <a href="list">Back to the list of images</a>
       <form action="${url}" class="dropzone" id="my-awesome-dropzone"></form>
     </body>
   </html>`
