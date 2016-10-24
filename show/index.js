@@ -2,10 +2,13 @@
 
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3()
+const reportVisit = require('../lib/reportVisit')
 
 const BUCKET = 'sconf-workshop-uploads'
 
 module.exports.show = function (event, context, callback) {
+  reportVisit({page: 'show', image: event.queryStringParameters.image})
+
   const html = `
   <html>
     <body>

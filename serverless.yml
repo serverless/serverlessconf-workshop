@@ -7,6 +7,7 @@ provider:
     - Effect: Allow
       Action:
         - s3:*
+        - kinesis:*
       Resource: "*"
 
 functions:
@@ -39,6 +40,11 @@ functions:
 
 resources:
   Resources:
+    WorkshopStream:
+      Type: AWS::Kinesis::Stream
+      Properties:
+        Name: WorkshopVisits
+        ShardCount: 1
     S3BucketSconfworkshopuploads:
       Properties:
         CorsConfiguration:

@@ -2,10 +2,14 @@
 
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3()
+const kinesis = new AWS.Kinesis()
+const reportVisit = require('../lib/reportVisit')
 
 const BUCKET = 'sconf-workshop-uploads'
 
 module.exports.list = function (event, context, callback) {
+  reportVisit({page: 'list'})
+
   const params = {
     Bucket: BUCKET,
     Prefix: 'small'
