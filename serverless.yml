@@ -44,7 +44,12 @@ functions:
       - stream:
           arn: arn:aws:kinesis:us-east-1:377024778620:stream/WorkshopVisits
           batchSize: 1
-
+  stats:
+    handler: stats/index.stats
+    events:
+      - http:
+          method: get
+          path: stats
 
 resources:
   Resources:
