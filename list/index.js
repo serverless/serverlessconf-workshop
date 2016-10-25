@@ -27,7 +27,8 @@ module.exports.list = function (event, context, callback) {
       const html = `
       <html>
         <body>
-          <a href="upload">Upload more images</a>
+          <a href="upload">Upload more images</a><br/>
+          <a href="stats">Show Stats</a><br/>
           <ul>
             ${list}
           </ul>
