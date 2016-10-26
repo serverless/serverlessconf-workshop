@@ -1,19 +1,21 @@
 # Prepare workshop folder
-mkdir workshop
-cd workshop
+`mkdir workshop`
+
+`cd workshop`
 
 # Prepare Docker containers
-docker-compose build serverless-workshop
-docker-compose run serverless-workshop bash
+`docker-compose build serverless-workshop`
+
+`docker-compose run serverless-workshop bash`
 
 # Create the Serverless service
-serverless create -t aws-nodejs -n serverless-workshop
+`serverless create -t aws-nodejs -n serverless-workshop`
 
 # Deploy with verbose mode
-serverless deploy -v
+`serverless deploy -v`
 
 # Invoke
-serverless invoke -f hello
+`serverless invoke -f hello`
 
 # Create Upload endpoint function
 * Create upload endpoint function
